@@ -3,9 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SmallCaps Generátor</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
 <body>
-    <h1>teszt1</h1>
+    <div class="anyad">
+        <div class="main">
+            <h1>Chorus SmallCaps Generátor</h1>
+            <input type="text" id="input" placeholder="írj ide...">
+        
+            <div id="output" contenteditable="true"></div>
+            <button id="copyButton">Másolás</button>
+        </div>
+    </div>
+    
+
+
+    <script>
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+
+        function toSmallCaps(text) {
+            // Replace Á/á and É/é with custom small caps letters
+            return text.replace(/á/g, '車')
+                       .replace(/Á/g, '車')
+                       .replace(/é/g, '買')
+                       .replace(/É/g, '買')
+                       .replace(/í/g, '紅')
+                       .replace(/Í/g, '紅')
+                       .replace(/a/g, 'ᴀ')
+                       .replace(/b/g, 'ʙ')
+                       .replace(/c/g, 'ᴄ')
+                       .replace(/d/g, 'ᴅ')
+                       .replace(/e/g, 'ᴇ')
+                       .replace(/f/g, 'ғ')
+                       .replace(/g/g, 'ɢ')
+                       .replace(/h/g, 'ʜ')
+                       .replace(/i/g, 'ɪ')
+                       .replace(/j/g, 'ᴊ')
+                       .replace(/k/g, 'ᴋ')
+                       .replace(/l/g, 'ʟ')
+                       .replace(/m/g, 'ᴍ')
+                       .replace(/n/g, 'ɴ')
+                       .replace(/o/g, 'ᴏ')
+                       .replace(/p/g, 'ᴘ')
+                       .replace(/q/g, '電')
+                       .replace(/Q/g, '電')
+                       .replace(/r/g, 'ʀ')
+                       .replace(/s/g, 's')
+                       .replace(/t/g, 'ᴛ')
+                       .replace(/u/g, 'ᴜ')
+                       .replace(/v/g, 'ᴠ')
+                       .replace(/w/g, 'ᴡ')
+                       .replace(/x/g, 'x')
+                       .replace(/y/g, 'ʏ')
+                       .replace(/z/g, 'ᴢ');
+        }
+
+        input.addEventListener('input', () => {
+            // Apply small caps CSS and replace special characters
+            output.textContent = toSmallCaps(input.value);
+        });
+
+        // Ensure copying grabs the transformed text
+
+            const copyButton = document.getElementById('copyButton');
+
+            copyButton.addEventListener('click', () => {
+                const range = document.createRange();
+                range.selectNode(output);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+
+                try {
+                    document.execCommand('copy');
+                    alert('Szöveg sikeresen kimásolva!');
+                } catch (err) {
+                    alert('Failed to copy text');
+                }
+
+                window.getSelection().removeAllRanges();
+            });
+        output.addEventListener('copy', (event) => {
+            event.preventDefault();
+            const transformedText = toSmallCaps(input.value);
+            if (event.clipboardData) {
+                event.clipboardData.setData('text/plain', transformedText);
+            }
+        });
+    </script>
 </body>
 </html>
