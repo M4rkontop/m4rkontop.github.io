@@ -1,534 +1,444 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M4rk</title>
-    <meta content="M4rk" property="og:title" />
-    <meta content="M4rk's Portfolio" property="og:description" />
-    <meta content="https://m4rkontop.github.io" property="og:url" />
-    <meta content="https://media.discordapp.net/attachments/1261654788655808533/1345404509291155570/pfp.png?ex=67c46d17&is=67c31b97&hm=3d5d62fa8564456f8b79bd9d7641ce2bbe30f27c2ab9fc26e4d0963c8a87aab9&=&format=webp&quality=lossless" property="og:image" />
-    <meta content="#D84CB5" data-react-helmet="true" name="theme-color" />
-    <link rel="icon" href="https://media.discordapp.net/attachments/1261654788655808533/1345404509291155570/pfp.png?ex=67c46d17&is=67c31b97&hm=3d5d62fa8564456f8b79bd9d7641ce2bbe30f27c2ab9fc26e4d0963c8a87aab9&=&format=webp&quality=lossless">
-</head>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
+  <meta charset="UTF-8" />
+  <meta content="Snake" property="og:title" />
+  <meta content="A simple snake game" property="og:description" />
+  <meta content="https://m4rkontop.github.io/snake" property="og:url" />
+  <meta content="https://i.imgur.com/ND5Z2XC.png" property="og:image" />
+  <meta content="#00ff00" data-react-helmet="true" name="theme-color" />
+  <link rel="icon" href="images/logo.png">
+  <title>Snake</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
     body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #262626;
-    user-select: none;
-    overflow-x: hidden;
-    height: 120vh;
-    transition: 0.3s;
-}
-
-body.light {
-    background-color: #ffffff;
-    color: #1e1e1e;
-    transition: 0.3s;
-}
-
-#home {
-    height: 20px;
-}
-
-.navbar {
-    position: fixed;
-    display: flex;
-    left: 5%;
-    width: 90%;
-    height: 60px;
-    background-color: #ffffff10;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #ffffff85;
-    backdrop-filter: blur(4px);
-    border-radius: 14px;
-    animation: animation;
-    animation-duration: 1s;
-    transition: 0.3s;
-    z-index: 10;
-}
-
-body.light .navbar {
-    background-color: #403f4033;
-    border-color: #1e1e1e6c;
-}
-
-.home-button {
-    display: flex;
-    justify-content: start;
-    margin-top: 8px;
-    margin-left: 8px;
-}
-
-body.light .home-button button {
-    background-color: #a5a5a5;
-}
-
-.home-button button {
-    height: 44px;
-    width: 44px;
-    border-radius: 14px;
-    border-style: none;
-    background-color: #1e1e1e;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.socials-buttons {
-    display: flex;
-    gap: 13px;
-    margin-left: auto;
-    margin-top: 8px;
-    margin-right: 8px;
-}
-
-.socials-buttons button {
-   height: 44px;
-   width: 66px;
-   border-radius: 14px;
-   border-style: none;
-   background-color: #1e1e1e;
-   cursor: pointer;
-   transition: 0.3s;
-}
-
-body.light .socials-buttons button {
-    background-color: #a5a5a5;
-}
-
-.myname {
-    font-family: "Roboto", sans-serif;
-    margin-top: 100px;
-    text-align: center;
-    color: #fff;
-    animation: animation;
-    animation-duration: 1s;
-    transition: 0.3s;
-}
-
-body.light .myname {
-    color: #1e1e1e;
-}
-
-.myname-m4rk {
-    font-family: "Roboto", sans-serif;
-    font-size: 44px;
-    margin-top: -15px;
-    background: -webkit-linear-gradient(#D84CB5, #34102B);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-body.light .myname-m4rk {
-    background: -webkit-linear-gradient(#a5a5a5, #403f40);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.discord-button {
-    display: flex;
-    justify-content: center;
-}
-
-
-.discord-button button {
-    height: 44px;
-    width: 88px;
-    background-color: #403f40;
-    border-style: none;
-    border-radius: 14px;
-    box-shadow: 0px 4px 4px 0px #1e1e1e;
-    cursor: pointer;
-    transition: 0.3s;
-    animation: animation;
-    animation-duration: 1s;
-}
-body.light .discord-button button {
-    background-color: #d1d1d1;
-}
-
-body.dark .discord-button .discord-dark {
-    display: none;
-}
-
-body.light .discord-button .discord-light {
-    display: none;
-}
-
-.discord-button button:hover {
-    transform: translateY(-5px);
-}
-
-.space {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    height: 3px;
-    width: 50%;
-    background-color: #403f40;
-    border-radius: 999px;
-    animation: animation;
-    animation-duration: 1s;
-    transition: 0.3s;
-}
-
-body.light .space {
-    background-color: #d1d1d1;
-}
-
-.aboutme {
-    margin-top: 60px;
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    color: #fff;
-    animation: animation;
-    animation-duration: 1s;
-}
-
-body.light .aboutme {
-    color: #1e1e1e;
-}
-
-.aboutme-position {
-    display: flex;
-    justify-content: center;
-}
-
-.aboutme-background {
-    font-family: "Roboto", sans-serif;
-    height: 210px;
-    width: 90%;
-    background-color: #403f40;
-    color: #fff;
-    box-shadow: 0px 4px 4px 0px #1e1e1e;
-    border-radius: 14px;
-    animation: animation;
-    animation-duration: 1s;
-    transition: 0.3s;
-}
-
-body.light .aboutme-background {
-    color: #1e1e1e;
-    background-color: #d1d1d1;
-    box-shadow: 0px 4px 4px 0px #a5a5a5;
-}
-
-.aboutme-background p {
-    margin: 20px;
-    text-align: justify;
-
-}
-
-.socials {
-    margin-top: 60px;
-    font-family: "Roboto", sans-serif;
-    text-align: center;
-    color: #fff;
-    animation: animation;
-    animation-duration: 1s;
-    transition: 0.3s;
-}
-
-body.light .socials {
-    color: #1e1e1e;
-}
-
-.socials-position .buttons {
-    height: 44px;
-    width: 88px;
-    background-color: #403f40;
-    box-shadow: 0px 4px 4px 0px #1e1e1e;
-    border-style: none;
-    border-radius: 14px;
-    cursor: pointer;
-    animation: animation;
-    animation-duration: 1s;
-    transition: 0.3s;
-}
-
-body.light .socials-position .buttons {
-    background-color: #d1d1d1;
-    box-shadow: 0px 4px 4px 0px #a5a5a5;
-}
-
-.socials-position .buttons:hover {
-    transform: translateY(-5px);
-}
-
-.socials-position .socials-buttons {
-    display: flex;
-    justify-content: center;
-    transition: 0.3s;
-}
-
-body.dark .socials-buttons .tiktok-dark {
-    display: none;
-}
-
-body.light .socials-buttons .tiktok-light {
-    display: none;
-}
-
-body.dark .socials-buttons .spotify-dark {
-    display: none;
-}
-
-body.light .socials-buttons .spotify-light {
-    display: none;
-}
-
-body.dark .socials-buttons .github-dark {
-    display: none;
-}
-
-body.light .socials-buttons .github-light {
-    display: none;
-}
-
-.theme-toggle {
-    position: fixed;
-    bottom: 25px;
-    right: 20px;
-    background-color: #D84CB5;
-    border-style: none;
-    border-radius: 14px;
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    animation: animation;
-    animation-duration: 1s;
-}
-
-.SECRET {
-    color: transparent;
-    position: fixed;
-    bottom: 10px;
-    user-select: all;
-}
-
-
-
-@keyframes animation {
-    0% {
-        opacity: 0%;
-        transform: translateY(15px);
+      display: flex;
+      flex-direction: column;
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
     }
 
-    100% {
-        opacity: 100%;
-        transform: 0px;
+    .navbar .logo {
+      width: 50px;
+      height: 50px;
+      background-image: url('images/logo.png');
+      background-size: cover;
+      border-style: solid;
+      border-width: 2px;
+      border-color: #555;
     }
-}
 
-@media only screen and (min-width: 676px) {
-    body {
-        height: 100vh;
+    .navbar .logo:hover {
+      background-image: url('images/logo.gif');
+      cursor: pointer;
     }
 
     .navbar {
-        display: none;
+      background-color: #333;
+      border-style: solid;
+      border-width: 0px 0px 2px;
+      border-color: #555;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 10px;
+      padding: 10px;
+      position: relative;
     }
 
-    .theme-toggle {
-        top: 20px;
+    .navbar h1 {
+      margin: 0;
     }
 
-    .space {
-        width: 300px;
+    .navbar span {
+      font-size: 1rem;
+      font-weight: bold;
+      color: red;
     }
 
-    .aboutme-background {
-        width: 400px;
+    canvas {
+      background: #222;
+      margin: 10px auto;
+      border: 2px solid #555;
+      touch-action: none;
     }
-}
-</style>
-<body>
 
-    <div id="home"></div>
+    .scoreboard {
+      margin-top: 40px;
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+    }
+
+    #message {
+      font-size: 2rem;
+      margin-top: 10px;
+      color: white;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown .main-button {
+      height: 40px;
+      width: 100px;
+      background-color: #555;
+      color: white;
+      border: 2px solid #555;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .dropdown-content button {
+      font-weight: bold;
+      background-color: #333;
+      color: white;
+      border-style: solid;
+      border-width: 2px 2px 0px 2px;
+      border-color: #555;
+      width: 100px;
+      height: 40px;
+    }
+
+    .dropdown-content .last-one {
+      border-bottom: 2px solid #555;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      background-color: #333;
+      display: none;
+      flex-direction: column;
+      z-index: 1;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      position: absolute;
+      right: 10px;
+    }
     
-    <div class="navbar">
-        <div class="home-button">
-            <a href="#home"><button><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.772 2.688C11.1231 2.41489 11.5552 2.26661 12 2.26661C12.4448 2.26661 12.8769 2.41489 13.228 2.688L21.612 9.208C22.365 9.795 21.949 11 20.997 11H20V19C20 19.5304 19.7893 20.0391 19.4142 20.4142C19.0391 20.7893 18.5304 21 18 21H6C5.46957 21 4.96086 20.7893 4.58579 20.4142C4.21071 20.0391 4 19.5304 4 19V11H3.003C2.05 11 1.636 9.794 2.388 9.209L10.772 2.688ZM5.625 9.225C5.854 9.41 6 9.693 6 10.01V19H18V10.01C18 9.693 18.146 9.41 18.375 9.225L12 4.267L5.625 9.225Z" fill="white"/></svg>
-            </button></a>
-        </div>
-        <div class="socials-buttons">
-            <a href="#socials">
-                <button><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.5442 10.4558C11.8385 8.75022 9.07316 8.75022 7.36753 10.4558L4.27922 13.5442C2.57359 15.2498 2.57359 18.0152 4.27922 19.7208C5.98485 21.4264 8.75021 21.4264 10.4558 19.7208L12 18.1766" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10.4558 13.5442C12.1614 15.2498 14.9268 15.2498 16.6324 13.5442L19.7207 10.4558C21.4264 8.75021 21.4264 5.98485 19.7207 4.27922C18.0151 2.57359 15.2497 2.57359 13.5441 4.27922L12 5.82338" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            </a>
-            <a href="#about">
-                <button><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.1211 17.8969C19.679 16.8496 19.0374 15.8984 18.232 15.0961C17.4291 14.2915 16.478 13.65 15.4312 13.207C15.4219 13.2023 15.4125 13.2 15.4031 13.1953C16.8633 12.1406 17.8125 10.4227 17.8125 8.48438C17.8125 5.27344 15.2109 2.67188 12 2.67188C8.78906 2.67188 6.1875 5.27344 6.1875 8.48438C6.1875 10.4227 7.13672 12.1406 8.59687 13.1977C8.5875 13.2023 8.57812 13.2047 8.56875 13.2094C7.51875 13.6523 6.57656 14.2875 5.76797 15.0984C4.96338 15.9013 4.32188 16.8524 3.8789 17.8992C3.44372 18.924 3.20902 20.0228 3.1875 21.1359C3.18687 21.161 3.19126 21.1858 3.2004 21.2091C3.20954 21.2324 3.22326 21.2537 3.24073 21.2716C3.2582 21.2895 3.27909 21.3037 3.30214 21.3134C3.3252 21.3231 3.34998 21.3281 3.375 21.3281H4.78125C4.88437 21.3281 4.9664 21.2461 4.96875 21.1453C5.01562 19.3359 5.74219 17.6414 7.02656 16.357C8.35547 15.0281 10.1203 14.2969 12 14.2969C13.8797 14.2969 15.6445 15.0281 16.9734 16.357C18.2578 17.6414 18.9844 19.3359 19.0312 21.1453C19.0336 21.2484 19.1156 21.3281 19.2187 21.3281H20.625C20.65 21.3281 20.6748 21.3231 20.6979 21.3134C20.7209 21.3037 20.7418 21.2895 20.7593 21.2716C20.7767 21.2537 20.7905 21.2324 20.7996 21.2091C20.8087 21.1858 20.8131 21.161 20.8125 21.1359C20.7891 20.0156 20.557 18.9258 20.1211 17.8969ZM12 12.5156C10.9242 12.5156 9.91172 12.0961 9.15 11.3344C8.38828 10.5727 7.96875 9.56016 7.96875 8.48438C7.96875 7.40859 8.38828 6.39609 9.15 5.63437C9.91172 4.87266 10.9242 4.45312 12 4.45312C13.0758 4.45312 14.0883 4.87266 14.85 5.63437C15.6117 6.39609 16.0312 7.40859 16.0312 8.48438C16.0312 9.56016 15.6117 10.5727 14.85 11.3344C14.0883 12.0961 13.0758 12.5156 12 12.5156Z" fill="white"/>
-                    </svg>
-                </button>
-            </a>
-        </div>
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo"></div>
+    <h1>Snake</h1><span>beta</span>
+
+    <div class="buttons">
+      <div class="dropdown">
+      <button class="main-button">🎮 Difficulty</button>
+      <div class="dropdown-content">
+        <button onclick="setDifficulty('easy')">Easy</button>
+        <button onclick="setDifficulty('normal')">Normal</button>
+        <button class="last-one" onclick="setDifficulty('hard')">Hard</button>
+      </div>
     </div>
 
-    <div class="myname">
-        <h1>Hi! My name is</h1>
-        <h1 class="myname-m4rk">M4rk</h1>
+    <div class="dropdown">
+      <button class="main-button">🎨 Theme</button>
+      <div class="dropdown-content">
+        <button onclick="setTheme('christmas')">Modern</button>
+        <button onclick="setTheme('neon')">Neon</button>
+        <button class="last-one" onclick="setTheme('classic')">Classic</button>
+      </div>
     </div>
-    <div id="about" class="discord-button">
-        <a href="https://discord.com/users/660439096476434432">
-            <button><svg class="discord-light" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_4_9)">
-                <path d="M20.317 4.4921C18.7873 3.80147 17.147 3.29265 15.4319 3.00122C15.4007 2.9956 15.3695 3.00965 15.3534 3.03777C15.1424 3.40697 14.9087 3.88862 14.7451 4.26719C12.9004 3.99545 11.0652 3.99545 9.25832 4.26719C9.09465 3.8802 8.85248 3.40697 8.64057 3.03777C8.62449 3.01059 8.59328 2.99654 8.56205 3.00122C6.84791 3.29172 5.20756 3.80054 3.67693 4.4921C3.66368 4.49772 3.65233 4.5071 3.64479 4.51928C0.533392 9.09311 -0.31895 13.5545 0.09918 17.9606C0.101072 17.9822 0.11337 18.0028 0.130398 18.0159C2.18321 19.4993 4.17171 20.3998 6.12328 20.9967C6.15451 21.0061 6.18761 20.9949 6.20748 20.9695C6.66913 20.3492 7.08064 19.6952 7.43348 19.0073C7.4543 18.967 7.43442 18.9192 7.39186 18.9033C6.73913 18.6597 6.1176 18.3626 5.51973 18.0253C5.47244 17.9981 5.46865 17.9316 5.51216 17.8997C5.63797 17.8069 5.76382 17.7104 5.88396 17.613C5.90569 17.5952 5.93598 17.5914 5.96153 17.6026C9.88928 19.3672 14.1415 19.3672 18.023 17.6026C18.0485 17.5905 18.0788 17.5942 18.1015 17.612C18.2216 17.7095 18.3475 17.8069 18.4742 17.8997C18.5177 17.9316 18.5149 17.9981 18.4676 18.0253C17.8697 18.3692 17.2482 18.6597 16.5945 18.9024C16.552 18.9183 16.533 18.967 16.5538 19.0073C16.9143 19.6942 17.3258 20.3483 17.7789 20.9686C17.7978 20.9949 17.8319 21.0061 17.8631 20.9967C19.8241 20.3998 21.8126 19.4993 23.8654 18.0159C23.8834 18.0028 23.8948 17.9831 23.8967 17.9616C24.3971 12.8676 23.0585 8.4428 20.3482 4.52021C20.3416 4.5071 20.3303 4.49772 20.317 4.4921ZM8.02002 15.2778C6.8375 15.2778 5.86313 14.2095 5.86313 12.8976C5.86313 11.5857 6.8186 10.5175 8.02002 10.5175C9.23087 10.5175 10.1958 11.5951 10.1769 12.8976C10.1769 14.2095 9.22141 15.2778 8.02002 15.2778ZM15.9947 15.2778C14.8123 15.2778 13.8379 14.2095 13.8379 12.8976C13.8379 11.5857 14.7933 10.5175 15.9947 10.5175C17.2056 10.5175 18.1705 11.5951 18.1516 12.8976C18.1516 14.2095 17.2056 15.2778 15.9947 15.2778Z" fill="#D84CB5"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_4_9">
-                <rect width="24" height="24" fill="white"/>
-                </clipPath>
-                </defs>
-                </svg><svg class="discord-dark" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_21_40)">
-                    <path d="M20.317 4.4921C18.7873 3.80147 17.147 3.29265 15.4319 3.00122C15.4007 2.9956 15.3695 3.00965 15.3534 3.03777C15.1424 3.40697 14.9087 3.88862 14.7451 4.26719C12.9004 3.99545 11.0652 3.99545 9.25832 4.26719C9.09465 3.8802 8.85248 3.40697 8.64057 3.03777C8.62449 3.01059 8.59328 2.99654 8.56205 3.00122C6.84791 3.29172 5.20756 3.80054 3.67693 4.4921C3.66368 4.49772 3.65233 4.5071 3.64479 4.51928C0.533392 9.09311 -0.31895 13.5545 0.09918 17.9606C0.101072 17.9822 0.11337 18.0028 0.130398 18.0159C2.18321 19.4993 4.17171 20.3998 6.12328 20.9967C6.15451 21.0061 6.18761 20.9949 6.20748 20.9695C6.66913 20.3492 7.08064 19.6952 7.43348 19.0073C7.4543 18.967 7.43442 18.9192 7.39186 18.9033C6.73913 18.6597 6.1176 18.3626 5.51973 18.0253C5.47244 17.9981 5.46865 17.9316 5.51216 17.8997C5.63797 17.8069 5.76382 17.7104 5.88396 17.613C5.90569 17.5952 5.93598 17.5914 5.96153 17.6026C9.88928 19.3672 14.1415 19.3672 18.023 17.6026C18.0485 17.5905 18.0788 17.5942 18.1015 17.612C18.2216 17.7095 18.3475 17.8069 18.4742 17.8997C18.5177 17.9316 18.5149 17.9981 18.4676 18.0253C17.8697 18.3692 17.2482 18.6597 16.5945 18.9024C16.552 18.9183 16.533 18.967 16.5538 19.0073C16.9143 19.6942 17.3258 20.3483 17.7789 20.9686C17.7978 20.9949 17.8319 21.0061 17.8631 20.9967C19.8241 20.3998 21.8126 19.4993 23.8654 18.0159C23.8834 18.0028 23.8948 17.9831 23.8967 17.9616C24.3971 12.8676 23.0585 8.4428 20.3482 4.52021C20.3416 4.5071 20.3303 4.49772 20.317 4.4921ZM8.02002 15.2778C6.8375 15.2778 5.86313 14.2095 5.86313 12.8976C5.86313 11.5857 6.8186 10.5175 8.02002 10.5175C9.23087 10.5175 10.1958 11.5951 10.1769 12.8976C10.1769 14.2095 9.22141 15.2778 8.02002 15.2778ZM15.9947 15.2778C14.8123 15.2778 13.8379 14.2095 13.8379 12.8976C13.8379 11.5857 14.7933 10.5175 15.9947 10.5175C17.2056 10.5175 18.1705 11.5951 18.1516 12.8976C18.1516 14.2095 17.2056 15.2778 15.9947 15.2778Z" fill="#1E1E1E"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_21_40">
-                    <rect width="24" height="24" fill="white"/>
-                    </clipPath>
-                    </defs>
-                    </svg>
-                </button>
-        </a>
-    </div>
-    <div class="space"></div>
-    <h1 class="aboutme">About me</h1>
-    <div class="aboutme-position">
-        <div id="socials" class="aboutme-background">
-            <p>Hi! Welcome in my website! My name is Mark and I am from Hungary. I’am a high school student and I’m studying to be an architect. In my free time, I usually play video games or sometimes practice HTML, and I just created this website out of boredom xD. I know it's not the best, but for the most part (except for the JavaScript), I made it using my own knowledge.</p>
-        </div>
-    </div>
-    <div class="space"></div>
-    <h1 class="socials">Socials</h1>
-    <div class="socials-position">
-        <div class="socials-buttons">
-            <a href="https://www.tiktok.com/@m4rk.hu">
-                <button class="buttons"><svg class="tiktok-light" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_1_23)">
-                    <path d="M15.75 9.5625C17.279 10.6631 19.1161 11.2536 21 11.25V7.5C19.6076 7.5 18.2723 6.94688 17.2877 5.96231C16.3031 4.97774 15.75 3.64239 15.75 2.25H12V14.625C11.9998 15.0947 11.8736 15.5558 11.6345 15.9601C11.3954 16.3644 11.0522 16.6971 10.6407 16.9236C10.2291 17.1501 9.76439 17.262 9.2949 17.2477C8.8254 17.2333 8.36834 17.0933 7.97141 16.8421C7.57448 16.591 7.25221 16.2379 7.03822 15.8198C6.82423 15.4016 6.72636 14.9337 6.75482 14.4649C6.78328 13.996 6.93702 13.5434 7.20001 13.1542C7.463 12.765 7.82561 12.4535 8.25 12.2522V8.25C5.26594 8.78156 3 11.4881 3 14.625C3 16.3158 3.67165 17.9373 4.86719 19.1328C6.06274 20.3284 7.68424 21 9.375 21C11.0658 21 12.6873 20.3284 13.8828 19.1328C15.0784 17.9373 15.75 16.3158 15.75 14.625V9.5625Z" stroke="#D84CB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_1_23">
-                    <rect width="24" height="24" fill="white"/>
-                    </clipPath>
-                    </defs>
-                    </svg><svg class="tiktok-dark" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_21_36)">
-                        <path d="M15.75 9.5625C17.279 10.6631 19.1161 11.2536 21 11.25V7.5C19.6076 7.5 18.2723 6.94688 17.2877 5.96231C16.3031 4.97774 15.75 3.64239 15.75 2.25H12V14.625C11.9998 15.0947 11.8736 15.5558 11.6345 15.9601C11.3954 16.3644 11.0522 16.6971 10.6407 16.9236C10.2291 17.1501 9.76439 17.262 9.2949 17.2477C8.8254 17.2333 8.36834 17.0933 7.97141 16.8421C7.57448 16.591 7.25221 16.2379 7.03822 15.8198C6.82423 15.4016 6.72636 14.9337 6.75482 14.4649C6.78328 13.996 6.93702 13.5434 7.20001 13.1542C7.463 12.765 7.82561 12.4535 8.25 12.2522V8.25C5.26594 8.78156 3 11.4881 3 14.625C3 16.3158 3.67165 17.9373 4.86719 19.1328C6.06274 20.3284 7.68424 21 9.375 21C11.0658 21 12.6873 20.3284 13.8828 19.1328C15.0784 17.9373 15.75 16.3158 15.75 14.625V9.5625Z" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_21_36">
-                        <rect width="24" height="24" fill="white"/>
-                        </clipPath>
-                        </defs>
-                        </svg>
-                    </button>
-            </a>
-                <a href="https://open.spotify.com/user/jw4mgfyg9mxlnl7lu3lmahdjq?si=71de15d116934836">
-                    <button class="buttons"><svg class="spotify-light" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 15C7 15 11.5 14 16 16" stroke="#D84CB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6.5 12C6.5 12 12.5 10.5 17.5 13.5" stroke="#D84CB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6 9.00002C9 8.50004 14 8.00005 19 11" stroke="#D84CB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22Z" stroke="#D84CB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg><svg class="spotify-dark" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 15C7 15 11.5 14 16 16" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M6.5 12C6.5 12 12.5 10.5 17.5 13.5" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M6 9.00002C9 8.50004 14 8.00005 19 11" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22Z" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>  
-                </a>                      
-                </button>
-            <a href="https://github.com/M4rkontop">
-                <button class="buttons"><svg class="github-light" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_1_15)">
-                    <path d="M16.24 22C15.9748 22 15.7204 21.8947 15.5329 21.7071C15.3453 21.5196 15.24 21.2652 15.24 21V18.4C15.2711 18.101 15.2391 17.7987 15.146 17.5128C15.053 17.2268 14.9011 16.9636 14.7 16.74C14.5755 16.605 14.4906 16.4383 14.4546 16.2582C14.4186 16.0781 14.4329 15.8916 14.4959 15.7191C14.5589 15.5465 14.6682 15.3947 14.8118 15.2802C14.9554 15.1657 15.1278 15.093 15.31 15.07C17.75 14.78 20 14 20 9.77003C20.0008 8.9801 19.7676 8.20764 19.33 7.55002C18.9261 6.94465 18.7787 6.20389 18.92 5.49002C19.0101 5.02435 19.0101 4.5457 18.92 4.08002C18.1712 4.3332 17.4662 4.7009 16.83 5.17002C16.7097 5.25544 16.572 5.31318 16.4268 5.33912C16.2816 5.36505 16.1324 5.35853 15.99 5.32002C14.1853 4.81008 12.2747 4.81008 10.47 5.32002C10.3276 5.35853 10.1784 5.36505 10.0332 5.33912C9.88796 5.31318 9.75027 5.25544 9.62999 5.17002C8.98993 4.69546 8.27742 4.32739 7.51999 4.08002C7.42489 4.54521 7.42489 5.02483 7.51999 5.49002C7.65107 6.21288 7.49695 6.9584 7.08999 7.57002C6.65425 8.23225 6.42139 9.00731 6.41999 9.80002C6.41999 13.69 8.29999 14.73 11.12 15.09C11.3045 15.1129 11.479 15.1868 11.6239 15.3034C11.7687 15.42 11.8782 15.5747 11.94 15.75C11.9981 15.9202 12.0093 16.1029 11.9724 16.2789C11.9354 16.4549 11.8517 16.6176 11.73 16.75C11.5355 16.9579 11.3862 17.2039 11.2915 17.4724C11.1969 17.7409 11.1589 18.0261 11.18 18.31V21C11.18 21.2652 11.0746 21.5196 10.8871 21.7071C10.6996 21.8947 10.4452 22 10.18 22C9.91477 22 9.66042 21.8947 9.47288 21.7071C9.28535 21.5196 9.17999 21.2652 9.17999 21V20.43C8.19735 20.543 7.20202 20.4114 6.28257 20.0467C5.36312 19.6821 4.54809 19.0958 3.90999 18.34C3.58199 17.9765 3.18847 17.6779 2.74999 17.46C2.62261 17.4272 2.50294 17.3696 2.39782 17.2905C2.29269 17.2114 2.20418 17.1124 2.13732 16.9991C2.07046 16.8859 2.02657 16.7605 2.00816 16.6303C1.98974 16.5 1.99716 16.3674 2.02999 16.24C2.06282 16.1126 2.12042 15.993 2.1995 15.8879C2.27858 15.7827 2.37759 15.6942 2.49087 15.6274C2.60416 15.5605 2.72951 15.5166 2.85976 15.4982C2.99001 15.4798 3.12261 15.4872 3.24999 15.52C4.01924 15.8003 4.70659 16.2677 5.24999 16.88C6.24999 17.88 7.24999 18.76 9.14999 18.4C9.11658 17.8631 9.1949 17.3251 9.37999 16.82C7.31999 16.3 4.37999 14.82 4.37999 9.82002C4.37735 8.63566 4.7253 7.477 5.37999 6.49002C5.50159 6.30783 5.54816 6.08572 5.50999 5.87002C5.30792 4.7906 5.42253 3.67576 5.83999 2.66002C5.89671 2.52459 5.98256 2.40331 6.09145 2.30479C6.20033 2.20628 6.32957 2.13295 6.46999 2.09002C6.80999 1.99002 8.02999 1.79002 10.34 3.29002C12.21 2.84003 14.16 2.84003 16.03 3.29002C18.34 1.79002 19.56 1.98002 19.89 2.09002C20.0304 2.13295 20.1596 2.20628 20.2685 2.30479C20.3774 2.40331 20.4633 2.52459 20.52 2.66002C20.9383 3.67906 21.0529 4.79733 20.85 5.88002C20.8295 5.97758 20.8287 6.07823 20.8476 6.1761C20.8665 6.27397 20.9047 6.36709 20.96 6.45002C21.6166 7.43983 21.9646 8.60225 21.96 9.79002C21.96 14.86 19.04 16.33 16.96 16.79C17.1432 17.3266 17.218 17.8943 17.18 18.46V21C17.1804 21.2552 17.0834 21.5008 16.9086 21.6867C16.7339 21.8726 16.4947 21.9847 16.24 22Z" fill="#D84CB5"/>
-                    </g>
-                    <defs>
-                    <clipPath id="clip0_1_15">
-                    <rect width="24" height="24" fill="white"/>
-                    </clipPath>
-                    </defs>
-                    </svg><svg class="github-dark" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_21_45)">
-                        <path d="M16.24 22C15.9748 22 15.7204 21.8947 15.5329 21.7071C15.3453 21.5196 15.24 21.2652 15.24 21V18.4C15.2711 18.101 15.2391 17.7987 15.146 17.5128C15.053 17.2268 14.9011 16.9636 14.7 16.74C14.5755 16.605 14.4906 16.4383 14.4546 16.2582C14.4186 16.0781 14.4329 15.8916 14.4959 15.7191C14.5589 15.5465 14.6682 15.3947 14.8118 15.2802C14.9554 15.1657 15.1278 15.093 15.31 15.07C17.75 14.78 20 14 20 9.77003C20.0008 8.9801 19.7676 8.20764 19.33 7.55002C18.9261 6.94465 18.7787 6.20389 18.92 5.49002C19.0101 5.02435 19.0101 4.5457 18.92 4.08002C18.1712 4.3332 17.4662 4.7009 16.83 5.17002C16.7097 5.25544 16.572 5.31318 16.4268 5.33912C16.2816 5.36505 16.1324 5.35853 15.99 5.32002C14.1853 4.81008 12.2747 4.81008 10.47 5.32002C10.3276 5.35853 10.1784 5.36505 10.0332 5.33912C9.88796 5.31318 9.75027 5.25544 9.62999 5.17002C8.98993 4.69546 8.27742 4.32739 7.51999 4.08002C7.42489 4.54521 7.42489 5.02483 7.51999 5.49002C7.65107 6.21288 7.49695 6.9584 7.08999 7.57002C6.65425 8.23225 6.42139 9.00731 6.41999 9.80002C6.41999 13.69 8.29999 14.73 11.12 15.09C11.3045 15.1129 11.479 15.1868 11.6239 15.3034C11.7687 15.42 11.8782 15.5747 11.94 15.75C11.9981 15.9202 12.0093 16.1029 11.9724 16.2789C11.9354 16.4549 11.8517 16.6176 11.73 16.75C11.5355 16.9579 11.3862 17.2039 11.2915 17.4724C11.1969 17.7409 11.1589 18.0261 11.18 18.31V21C11.18 21.2652 11.0746 21.5196 10.8871 21.7071C10.6996 21.8947 10.4452 22 10.18 22C9.91477 22 9.66042 21.8947 9.47288 21.7071C9.28535 21.5196 9.17999 21.2652 9.17999 21V20.43C8.19735 20.543 7.20202 20.4114 6.28257 20.0467C5.36312 19.6821 4.54809 19.0958 3.90999 18.34C3.58199 17.9765 3.18847 17.6779 2.74999 17.46C2.62261 17.4272 2.50294 17.3696 2.39782 17.2905C2.29269 17.2114 2.20418 17.1124 2.13732 16.9991C2.07046 16.8859 2.02657 16.7605 2.00816 16.6303C1.98974 16.5 1.99716 16.3674 2.02999 16.24C2.06282 16.1126 2.12042 15.993 2.1995 15.8879C2.27858 15.7827 2.37759 15.6942 2.49087 15.6274C2.60416 15.5605 2.72951 15.5166 2.85976 15.4982C2.99001 15.4798 3.12261 15.4872 3.24999 15.52C4.01924 15.8003 4.70659 16.2677 5.24999 16.88C6.24999 17.88 7.24999 18.76 9.14999 18.4C9.11658 17.8631 9.1949 17.3251 9.37999 16.82C7.31999 16.3 4.37999 14.82 4.37999 9.82002C4.37735 8.63566 4.7253 7.477 5.37999 6.49002C5.50159 6.30783 5.54816 6.08572 5.50999 5.87002C5.30792 4.7906 5.42253 3.67576 5.83999 2.66002C5.89671 2.52459 5.98256 2.40331 6.09145 2.30479C6.20033 2.20628 6.32957 2.13295 6.46999 2.09002C6.80999 1.99002 8.02999 1.79002 10.34 3.29002C12.21 2.84003 14.16 2.84003 16.03 3.29002C18.34 1.79002 19.56 1.98002 19.89 2.09002C20.0304 2.13295 20.1596 2.20628 20.2685 2.30479C20.3774 2.40331 20.4633 2.52459 20.52 2.66002C20.9383 3.67906 21.0529 4.79733 20.85 5.88002C20.8295 5.97758 20.8287 6.07823 20.8476 6.1761C20.8665 6.27397 20.9047 6.36709 20.96 6.45002C21.6166 7.43983 21.9646 8.60225 21.96 9.79002C21.96 14.86 19.04 16.33 16.96 16.79C17.1432 17.3266 17.218 17.8943 17.18 18.46V21C17.1804 21.2552 17.0834 21.5008 16.9086 21.6867C16.7339 21.8726 16.4947 21.9847 16.24 22Z" fill="#1E1E1E"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_21_45">
-                        <rect width="24" height="24" fill="white"/>
-                        </clipPath>
-                        </defs>
-                        </svg>
-                            
-                </button>
-            </a>
-
-        </div>
+  </div>
     </div>
 
-    <div class="theme-position">
-        <button class="theme-toggle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.5 17.5L19 19M20 12H22M6.5 6.5L5 5M17.5 6.5L19 5M6.5 17.5L5 19M2 12H4M12 2V4M12 20V22M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-    </button>
+  <div class="scoreboard">
+    score: <span id="score">0</span> | best score: <span id="highscore">0</span>
+  </div>
+  <canvas id="game" width="400" height="400"></canvas>
 
-    <a class="SECRET" href="https://m4rkontop.github.io/secret/">SECRET</a>
+  <div style="margin-top: 10px;">
+  <button id="pauseBtn" style="padding: 10px 20px; font-size: 1rem; background-color: #555; color: white; border: 2px solid #555; cursor: pointer;">
+    Pause
+  </button>
+  </div>
 
+  <div id="message">Press a Button to start!</div>
 
-    <script>
-        // this code is writen by chatgpt :,)
+<script>
+  const canvas = document.getElementById("game");
+  const ctx = canvas.getContext("2d");
+  const box = 20;
+  const rows = canvas.height / box;
+  const cols = canvas.width / box;
+  const scoreEl = document.getElementById("score");
+  const highscoreEl = document.getElementById("highscore");
+  const messageEl = document.getElementById("message");
 
-const currentTheme = localStorage.getItem('theme') || 'light';
-document.body.className = currentTheme;
+  let snake = [{ x: 9 * box, y: 9 * box }];
+  let direction = { x: 0, y: 0 };
+  let nextDirection = { x: 1, y: 0 };
+  let food = spawnFood();
+  let score = 0;
+  let highscore = parseInt(getCookie("highscore") || "0");
+  let playing = false;
+  let gameInterval = null;
+  let countdownInterval = null;
+  let isCountingDown = false;
 
-const themeToggle = document.querySelector('.theme-toggle');
-const svgIcon = themeToggle.querySelector('svg path');
+  // Theme/colors
+  let snakeColor = "lime";
+  let foodColor = "red";
 
-const updateSVG = (theme) => {
-    if (theme === 'light') {
-        svgIcon.setAttribute('d', 'M9.3812 2.54327C7.76937 3.00154 6.2485 3.86519 4.97948 5.13421C1.00684 9.10687 1.00684 15.5478 4.97948 19.5205C8.95213 23.4932 15.3931 23.4932 19.3657 19.5205C20.6429 18.2433 21.5095 16.711 21.9654 15.0876M9.5384 2.5C8.6321 5.89377 9.51018 9.66492 12.1726 12.3274C14.8351 14.9899 18.6063 15.868 22 14.9617'); // Nap ikon
-    } else {
-        svgIcon.setAttribute('d', 'M17.5 17.5L19 19M20 12H22M6.5 6.5L5 5M17.5 6.5L19 5M6.5 17.5L5 19M2 12H4M12 2V4M12 20V22M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z');
+  // Difficulty
+  let speed = 100;
+
+  let gameStarted = false;
+
+  // Load from cookies
+  const savedTheme = getCookie("theme") || "classic";
+  const savedDifficulty = getCookie("difficulty") || "normal";
+  setTheme(savedTheme);
+  setDifficulty(savedDifficulty);
+
+  highscoreEl.innerText = highscore;
+
+function startGame() {
+  if (playing || direction.x !== 0 || direction.y !== 0 || isCountingDown) return;
+  gameStarted = true; // <- itt jelezzük, hogy már elindult
+  pauseBtn.disabled = false; // <- engedélyezzük a gombot
+  startCountdown(() => {
+    direction = nextDirection;
+    playing = true;
+    gameLoop();
+  });
+}
+
+function stopGame() {
+  playing = false;
+  clearTimeout(gameInterval);
+  direction = { x: 0, y: 0 }; // <- FONTOS: ezt adjuk hozzá
+  messageEl.innerText = "Game paused. press any key, space or the button to continue.";
+}
+
+  function startCountdown(callback) {
+    let count = 3;
+    isCountingDown = true;
+    messageEl.innerText = count;
+    countdownInterval = setInterval(() => {
+      count--;
+      if (count > 0) {
+        messageEl.innerText = count;
+      } else {
+        clearInterval(countdownInterval);
+        messageEl.innerText = "";
+        isCountingDown = false;
+        callback();
+      }
+    }, 500);
+  }
+
+  function gameLoop() {
+    if (!playing) return;
+
+    gameInterval = setTimeout(() => {
+      direction = nextDirection;
+
+      const head = {
+        x: snake[0].x + direction.x * box,
+        y: snake[0].y + direction.y * box
+      };
+
+      if (
+        head.x < 0 || head.x >= canvas.width ||
+        head.y < 0 || head.y >= canvas.height ||
+        snake.some(segment => segment.x === head.x && segment.y === head.y)
+      ) {
+        if (score > highscore) setCookie("highscore", score, 365);
+        alert("Game over! Pontszám: " + score);
+        location.reload();
+        return;
+      }
+
+      snake.unshift(head);
+
+      if (head.x === food.x && head.y === food.y) {
+        score++;
+        scoreEl.innerText = score;
+        if (score > highscore) highscoreEl.innerText = score;
+        food = spawnFood();
+      } else {
+        snake.pop();
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = snakeColor;
+      snake.forEach(part => ctx.fillRect(part.x, part.y, box, box));
+
+      ctx.fillStyle = foodColor;
+      ctx.fillRect(food.x, food.y, box, box);
+
+      gameLoop();
+    }, speed);
+  }
+
+  function spawnFood() {
+    let newFood;
+    do {
+      newFood = {
+        x: Math.floor(Math.random() * cols) * box,
+        y: Math.floor(Math.random() * rows) * box
+      };
+    } while (snake.some(segment => segment.x === newFood.x && segment.y === newFood.y));
+    return newFood;
+  }
+
+  // Keyboard control
+  document.addEventListener("keydown", (e) => {
+    if (isCountingDown) return;
+    const key = e.key.toLowerCase();
+    if ((key === "w" || key === "arrowup") && direction.y === 0) nextDirection = { x: 0, y: -1 };
+    if ((key === "s" || key === "arrowdown") && direction.y === 0) nextDirection = { x: 0, y: 1 };
+    if ((key === "a" || key === "arrowleft") && direction.x === 0) nextDirection = { x: -1, y: 0 };
+    if ((key === "d" || key === "arrowright") && direction.x === 0) nextDirection = { x: 1, y: 0 };
+    if (key === "p") {
+      playing ? stopGame() : startGame();
+      return;
     }
-};
+    if (!playing) startGame();
+  });
 
-updateSVG(currentTheme);
+  // Touch control
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let lastTap = 0;
 
-themeToggle.addEventListener('click', () => {
-    const newTheme = document.body.className === 'light' ? 'dark' : 'light';
-    document.body.className = newTheme;
-    localStorage.setItem('theme', newTheme);
-    updateSVG(newTheme);
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    const navButtons = document.querySelectorAll(".navbar a");
-    navButtons.forEach(button => {
-        button.addEventListener("click", (event) => {
-            event.preventDefault();
-            const targetId = button.getAttribute("href");
-            const targetSection = document.querySelector(targetId);
+  canvas.addEventListener("touchmove", (e) => {
+    if (isCountingDown) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 20 && direction.x === 0) nextDirection = { x: 1, y: 0 };
+      else if (dx < -20 && direction.x === 0) nextDirection = { x: -1, y: 0 };
+    } else {
+      if (dy > 20 && direction.y === 0) nextDirection = { x: 0, y: 1 };
+      else if (dy < -20 && direction.y === 0) nextDirection = { x: 0, y: -1 };
+    }
+    if (!playing) startGame();
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  });
 
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-        });
+  // Theme switch
+  function setTheme(theme) {
+    setCookie("theme", theme, 365);
+    switch (theme) {
+      case "christmas":
+        snakeColor = "white";
+        foodColor = "red";
+        break;
+      case "neon":
+        snakeColor = "#0ff";
+        foodColor = "#f0f";
+        break;
+      case "classic":
+      default:
+        snakeColor = "lime";
+        foodColor = "red";
+        break;
+    }
+  }
+
+  // Difficulty switch
+  function setDifficulty(level) {
+    setCookie("difficulty", level, 365);
+    switch (level) {
+      case "easy":
+        speed = 200;
+        break;
+      case "hard":
+        speed = 60;
+        break;
+      case "normal":
+      default:
+        speed = 100;
+        break;
+    }
+  }
+
+  function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 86400000).toUTCString();
+    document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+  }
+
+  function getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (let c of cookies) {
+      const [key, val] = c.split("=");
+      if (key === name) return val;
+    }
+    return null;
+  }
+
+  // Dropdown működés
+  document.querySelectorAll(".dropdown").forEach(dropdown => {
+    const button = dropdown.querySelector("button");
+    const menu = dropdown.querySelector(".dropdown-content");
+
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      document.querySelectorAll(".dropdown-content").forEach(d => d.style.display = "none");
+      menu.style.display = "flex";
     });
+
+    menu.querySelectorAll("button").forEach(option => {
+      option.addEventListener("click", () => {
+        menu.style.display = "none";
+      });
+    });
+  });
+
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".dropdown-content").forEach(menu => {
+      menu.style.display = "none";
+    });
+  });
+
+pauseBtn.disabled = true;
+
+pauseBtn.addEventListener("click", () => {
+  if (playing) {
+    stopGame();
+  } else {
+    startGame();
+  }
 });
-    </script>
+
+document.addEventListener("keydown", (e) => {
+  if (isCountingDown) return;
+
+  const key = e.key.toLowerCase();
+  if ((key === "w" || key === "arrowup") && direction.y === 0) nextDirection = { x: 0, y: -1 };
+  if ((key === "s" || key === "arrowdown") && direction.y === 0) nextDirection = { x: 0, y: 1 };
+  if ((key === "a" || key === "arrowleft") && direction.x === 0) nextDirection = { x: -1, y: 0 };
+  if ((key === "d" || key === "arrowright") && direction.x === 0) nextDirection = { x: 1, y: 0 };
+
+  if (key === " " || key === "spacebar") {
+    e.preventDefault(); // Ne scrollozzon le
+    if (playing) {
+      stopGame();
+    } else {
+      startGame();
+    }
+    return;
+  }
+
+  if (!playing) startGame();
+});
+
+</script>
+
 </body>
 </html>
